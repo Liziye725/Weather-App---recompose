@@ -1,4 +1,5 @@
-# Weather-App---recompose - by Ziye
+# Weather-App---recompose - by Ziye Li
+<img width="772" alt="image" src="https://github.com/Liziye725/Weather-App---recompose/assets/144114689/2988114b-4184-4f02-805f-770eb81e23c6">
 
 
 ## Introduction
@@ -13,12 +14,8 @@ This is a weather application powered by the OpenWeatherMap API. It allows users
 2. Click the search button.
 3. If the city name is valid, the weather information, including temperature, city name, humidity, and wind speed, will be displayed.
 4. If the city name is invalid, an "Invalid city name" error message will be shown.
-5. The weather icon will be dynamically updated based on the weather condition.
+5. The weather icon will be dynamically updated based on the weather conditions.
 
-## Tech Stack
-- HTML
-- CSS
-- JavaScript
 
 ## API
 This project utilizes the OpenWeatherMap API to fetch weather data. You will need to provide a valid API key in the code. Visit the OpenWeatherMap website (https://openweathermap.org/) to register and obtain an API key.
@@ -27,7 +24,8 @@ This project utilizes the OpenWeatherMap API to fetch weather data. You will nee
 Contributions to this project are welcome. If you find any issues or have suggestions for improvement, please submit an issue or pull request.
 
 ## Reference
-Original version:https://www.youtube.com/watch?v=MIYQR-Ybrn4&list=PLjwm_8O3suyOgDS_Z8AWbbq3zpCmR-WE9
+Original version: https://www.youtube.com/watch?v=MIYQR-Ybrn4&list=PLjwm_8O3suyOgDS_Z8AWbbq3zpCmR-WE9
+
 There are some modifications:
 - Images (You can find the weather icon here: https://www.iconfinder.com/iconsets/weather-and-disaster-outline)
 - Styles 
