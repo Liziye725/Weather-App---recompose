@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Weather App - by Ziye</title>
+	<link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+
+
+<div class="card">
+	<div class="search">
+		<button><a>clic</a></button>
+		<input type="text" placeholder="enter city name" spellcheck="false">
+	</div>
+	<div class="error">
+		<p>Invalid city name</p>
+	</div>
+	<div class="weather">
+		<div class="line">
+			<img src="images/rainy1.png" class="weather-icon">
+				<div class="main-info">
+					<h1 class="temp">14°C</h1>
+					<h2 class="city">Aarhus</h2>
+				</div>
+		</div>
+
+		<div class="details">
+			<div class="col"><img src="images/humidity2.png">
+				<div>
+					<p class="humidity">50%</p>
+					<p>Humidity</p>
+				</div>
+			</div>
+			<div class="col"><img src="images/windy1.png">
+				<div>
+					<p class="wind">10 km/h</p>
+					<p>Wind Speed</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+
+
+const apiKey = "01ae15df2c75e5d911b2da9d66a4c8cf";
+const apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=";
+
+const searchBox = document.querySelector(".search input");
+const searchBtn = document.querySelector(".search button");
+const weatherIcon = document.querySelector(".weather-icon");
+
+async function checkWeather(city){
+	const response = await fetch(apiUrl + city + '&appid=' + apiKey);
+	
+	if(response.status == 404){
+		document.querySelector(".error").style.display = "block";
+		document.querySelector(".weather").style.display = "none";
+	}
+	else {
+		var data = await response.json();
+	/* console.log(data); */
+
+		const temperatureInKelvin = data.list[0].main.temp;
+		const temperatureInCelsius = kelvinToCelsius(temperatureInKelvin);
+
+		
+		document.querySelector(".temp").innerHTML = Math.round(temperatureInCelsius.toFixed(2)) + "°C";
+		document.querySelector(".city").innerHTML = data.city.name;
+		document.querySelector(".humidity").innerHTML = data.list[0].main.humidity + "%";
+		document.querySelector(".wind").innerHTML = Math.round(data.list[0].wind.speed)  + "km/h";
+		console.log('温度（摄氏度）：', Math.round(temperatureInCelsius.toFixed(2)));
+
+		/* if(data.list[0].weather[0].main === "clear sky"){
+			console.log(data.list[0].weather[0].main);
+			weatherIcon.src = "https://openweathermap.org/img/wn/01d@2x.png";
+		}
+		*/
+		if(data.list[0].weather[0].main === "Clouds"){
+			weatherIcon.src = "images/sunny1.png";
+		}
+		else if(data.list[0].weather[0].main === "Clear"){
+			weatherIcon.src = "images/clear.png";
+		}
+		else if(data.list[0].weather[0].main === "Rain"){
+			console.log(data.list[0].weather[0].main);
+			weatherIcon.src = "images/rainy1.png";
+		}
+		else if(data.list[0].weather[0].main === "Drizzle"){
+			console.log(data.list[0].weather[0].main);
+			weatherIcon.src = "images/drizzle.png";
+		}
+		else if(data.list[0].weather[0].main === "Mist"){
+			console.log(data.list[0].weather[0].main);
+			weatherIcon.src = "images/mist.png";
+		}
+
+		document.querySelector(".weather").style.display = "block";
+		document.querySelector(".error").style.display = "none";
+	}
+	
+
+
+}
+
+function kelvinToCelsius(kelvin) {
+    return kelvin - 273.15;
+}
+
+searchBtn.addEventListener("click", ()=>{
+	checkWeather(searchBox.value);
+})
+
+
+
+</script>
+
+
+</body>
+</html>
